@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Elite Car Rental</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-pic js-tilt" data-tilt>
+					<img src="images/img-01.png" alt="IMG">
+				</div>
+				<form class="login100-form validate-form" id="form">
+					<span class="login100-form-title" id="form-title">
+						Login
+					</span>
+
+					<!-- Login Fields -->
+					<div id="login-fields">
+						<div class="wrap-input100 validate-input">
+							<input class="input100" type="text" id="login-email" placeholder="Email">
+							<span class="focus-input100"></span>
+							<span class="symbol-input100">
+								<i class="fa fa-envelope" aria-hidden="true"></i>
+							</span>
+						</div>
+
+						<div class="wrap-input100 validate-input">
+							<input class="input100" type="password" id="login-password" placeholder="Password">
+							<span class="focus-input100"></span>
+							<span class="symbol-input100">
+								<i class="fa fa-lock" aria-hidden="true"></i>
+							</span>
+						</div>
+					</div>
+
+					<!-- Register Fields -->
+					<div id="register-fields" style="display: none;">
+						<div class="wrap-input100 validate-input">
+							<input class="input100" type="text" id="register-name" placeholder="Full Name">
+							<span class="focus-input100"></span>
+							<span class="symbol-input100">
+								<i class="fa fa-user" aria-hidden="true"></i>
+							</span>
+						</div>
+
+						<div class="wrap-input100 validate-input">
+							<input class="input100" type="text" id="register-email" placeholder="Email">
+							<span class="focus-input100"></span>
+							<span class="symbol-input100">
+								<i class="fa fa-envelope" aria-hidden="true"></i>
+							</span>
+						</div>
+
+						<div class="wrap-input100 validate-input">
+							<input class="input100" type="password" id="register-password" placeholder="Password">
+							<span class="focus-input100"></span>
+							<span class="symbol-input100">
+								<i class="fa fa-lock" aria-hidden="true"></i>
+							</span>
+						</div>
+					</div>
+
+					<div class="container-login100-form-btn">
+						<button type="button" class="login100-form-btn" id="form-button">
+							Login
+						</button>
+					</div>
+
+					<div class="text-center p-t-136">
+						<a class="txt2" href="#" id="toggle-form">
+							Create your Account
+							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		const urlParams = new URLSearchParams(window.location.search);
+        const userType = urlParams.get('type'); 
+
+        const type = userType && userType !== 'null' ? userType : 'Admin';
+
+		const toggleForm = document.getElementById('toggle-form');
+		const formTitle = document.getElementById('form-title');
+		const loginFields = document.getElementById('login-fields');
+		const registerFields = document.getElementById('register-fields');
+		const formButton = document.getElementById('form-button');
+
+		toggleForm.addEventListener('click', (e) => {
+			e.preventDefault();
+
+			if (loginFields.style.display === 'none') {
+				loginFields.style.display = 'block';
+				registerFields.style.display = 'none';
+				formTitle.textContent = 'Login';
+				formButton.textContent = 'Login';
+				toggleForm.innerHTML = 'Create your Account <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>';
+			} else {
+				loginFields.style.display = 'none';
+				registerFields.style.display = 'block';
+				formTitle.textContent = 'Register';
+				formButton.textContent = 'Register';
+				toggleForm.innerHTML = 'Already have an account? <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>';
+			}
+		});
+
+		formButton.addEventListener('click', async () => {
+			const isRegister = registerFields.style.display === 'block';
+			const url = isRegister ? 'register.php' : 'login.php';
+			const data = isRegister
+				? {
+					name: document.getElementById('register-name').value,
+					email: document.getElementById('register-email').value,
+					password: document.getElementById('register-password').value,
+					type: type
+				}
+				: {
+					email: document.getElementById('login-email').value,
+					password: document.getElementById('login-password').value,
+				};
+
+			const response = await fetch(url, {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify(data),
+			});
+
+			const result = await response.json();
+			if (result.success) {
+            alert(result.message);
+            window.location.href = "index.php";
+        } else {
+            alert(result.message);
+        }
+		});
+	</script>
+
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="vendor/tilt/tilt.jquery.min.js"></script>
+	<script>
+		$('.js-tilt').tilt({ scale: 1.1 });
+	</script>
+</body>
+</html>
