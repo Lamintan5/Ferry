@@ -8,7 +8,7 @@ async function fetchRoutes() {
        
         if (result.success) {
             const tableBody = document.querySelector('#routes-table tbody');
-            tableBody.innerHTML = ''; // Clear existing rows
+            tableBody.innerHTML = ''; 
             result.data.forEach(route => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
@@ -28,7 +28,7 @@ async function fetchRoutes() {
             });
 
             document.querySelector('#routes-table').addEventListener('click', event => {
-                // Identify if the clicked element or its parent is the 'edit-btn'
+              
                 const button = event.target.closest('.edit-btn');
                 if (button) {
                     const id = button.getAttribute('data-id');
