@@ -42,7 +42,8 @@ async function fetchRoutes() {
 
             document.querySelectorAll('.delete-btn').forEach(button => {
                 button.addEventListener('click', event => {
-                    const id = event.target.getAttribute('data-id');
+                    const id = event.currentTarget.getAttribute('data-id');
+                    console.log(id);
                     deleteRoute(id);
                 });
             });
@@ -260,8 +261,10 @@ async function deleteRoute(id) {
             body: `rid=${id}`,
         });
         const result = await response.json();
+    
         if (result.success) {
-            alert('Route deleted successfully');
+            alert('Route deleted successfully1');
+            
             fetchRoutes();
         } else {
             alert(`Error deleting route: ${result.message}`);
