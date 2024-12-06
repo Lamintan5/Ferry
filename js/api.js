@@ -166,7 +166,7 @@ document.getElementById('addRouteForm').addEventListener('submit', async functio
             if (result.success) {
                 alert(result.message);
                 closeModal();
-                
+                fetchRoutes();
             } else {
                 alert(`Error: ${result.message}`);
                 console.error('Debug info:', result.debug);

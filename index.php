@@ -29,13 +29,14 @@ session_start();
             <?php if (isset($_SESSION['user']) && $_SESSION['user']['type'] === 'Admin'): ?>
                 <a href="dashboard.php">Dashboard</a>
             <?php endif; ?>
-
         </nav>
+        <div>
         <?php if (isset($_SESSION['user'])): ?>
             <a href="logout.php" class="btn-talk">Log out</a>
         <?php else: ?>
             <a href="auth.html" class="btn-talk">Log in</a>
         <?php endif; ?>
+        </div>
     </header>
 
     <section class="home">

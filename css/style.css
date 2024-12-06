@@ -13,8 +13,9 @@ header {
   top: 0;
   left: 0;
   width: 100%;
-  padding: 30px 100px;
+  padding: 30px 50px;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   box-shadow: 0 2px 8px hsla(220, 68%, 12%, 0.1);
   align-items: center;
@@ -39,7 +40,6 @@ header {
 }
 
 .navigation {
-    margin-left: -300px;
 }
 
 .navigation a {
@@ -89,7 +89,10 @@ header {
   width: 750px;
   background-image: url("../images/sailor.png");
   background-size: contain;
+  background-repeat: no-repeat; 
+  background-position: center;
 }
+
 
 /* REVEAL EFFECT */
 .reveal{

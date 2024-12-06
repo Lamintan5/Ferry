@@ -10,6 +10,21 @@ session_start();
     <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
     <link rel="stylesheet" href="css/dash.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css"/>
+    <style>
+        .row {
+            display: flex;
+            gap: 20px;
+        }
+
+        .column {
+            flex: 1; 
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+
+    </style>
 </head>
 <body>
     <div class="sidebar">
@@ -101,21 +116,27 @@ session_start();
             <form id="addRouteForm">
                 <label for="image">Image:</label>
                 <input type="file" id="image" name="image" accept="image/*" required>
-                
+
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name" placeholder="Enter route name" required>
-                
-                <label for="departure">Departure:</label>
-                <input type="text" id="departure" name="departure" placeholder="Enter departure" required>
-                
-                <label for="destination">Destination:</label>
-                <input type="text" id="destination" name="destination" placeholder="Enter destination" required>
-                
-                <label for="dtime">Departure Time:</label>
-                <input type="time" id="dtime" name="dtime" required>
-                
-                <label for="atime">Arrival Time:</label>
-                <input type="time" id="atime" name="atime" required>
+
+                <!-- Row with Two Columns -->
+                <div class="row">
+                    <div class="column">
+                        <label for="departure">Departure:</label>
+                        <input type="text" id="departure" name="departure" placeholder="Enter departure" required>
+
+                        <label for="dtime">Departure Time:</label>
+                        <input type="time" id="dtime" name="dtime" required>
+                    </div>
+                    <div class="column">
+                        <label for="destination">Destination:</label>
+                        <input type="text" id="destination" name="destination" placeholder="Enter destination" required>
+
+                        <label for="atime">Arrival Time:</label>
+                        <input type="time" id="atime" name="atime" required>
+                    </div>
+                </div>
 
                 <label for="price">Route Price:</label>
                 <input type="number" id="price" name="price" placeholder="Enter route price" required>
@@ -124,6 +145,7 @@ session_start();
             </form>
         </div>
     </div>
+
 
     <div id="editRouteModal" class="modal">
         <div class="modal-content">
@@ -134,21 +156,27 @@ session_start();
 
                 <label for="image">Image (Optional):</label>
                 <input type="file" id="edit-image" name="image" accept="image/*">
-                
+
                 <label for="name">Name:</label>
                 <input type="text" id="edit-name" name="name" placeholder="Enter route name" required>
-                
-                <label for="departure">Departure:</label>
-                <input type="text" id="edit-departure" name="departure" placeholder="Enter departure" required>
-                
-                <label for="destination">Destination:</label>
-                <input type="text" id="edit-destination" name="destination" placeholder="Enter destination" required>
-                
-                <label for="dtime">Departure Time:</label>
-                <input type="time" id="edit-dtime" name="dtime" required>
-                
-                <label for="atime">Arrival Time:</label>
-                <input type="time" id="edit-atime" name="atime" required>
+
+                <!-- Row with Two Columns -->
+                <div class="row">
+                    <div class="column">
+                        <label for="departure">Departure:</label>
+                        <input type="text" id="edit-departure" name="departure" placeholder="Enter departure" required>
+
+                        <label for="dtime">Departure Time:</label>
+                        <input type="time" id="edit-dtime" name="dtime" required>
+                    </div>
+                    <div class="column">
+                        <label for="destination">Destination:</label>
+                        <input type="text" id="edit-destination" name="destination" placeholder="Enter destination" required>
+
+                        <label for="atime">Arrival Time:</label>
+                        <input type="time" id="edit-atime" name="atime" required>
+                    </div>
+                </div>
 
                 <label for="price">Route Price:</label>
                 <input type="number" id="edit-price" name="price" placeholder="Enter route price" required>
@@ -157,6 +185,7 @@ session_start();
             </form>
         </div>
     </div>
+
 
     <script src="js/api.js"></script>
     <script>
